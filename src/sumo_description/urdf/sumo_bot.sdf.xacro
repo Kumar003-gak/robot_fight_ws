@@ -6,7 +6,8 @@
 
   <xacro:property name="colors" value="${dict(
       red='0.86 0.08 0.1 1', blue='0.08 0.36 0.9 1', green='0.08 0.7 0.28 1',
-      yellow='0.98 0.78 0.05 1', orange='1.0 0.45 0.05 1', purple='0.58 0.2 0.85 1')}"/>
+      yellow='0.98 0.78 0.05 1', orange='1.0 0.45 0.05 1', purple='0.58 0.2 0.85 1',
+      cyan='0.0 0.75 0.8 1')}"/>
   <xacro:property name="team" value="${colors['$(arg color)']}"/>
   <xacro:property name="white" value="0.93 0.94 0.96 1"/>
   <xacro:property name="graphite" value="0.16 0.17 0.2 1"/>

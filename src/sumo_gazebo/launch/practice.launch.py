@@ -10,7 +10,7 @@ from launch.substitutions import LaunchConfiguration
 def generate_launch_description() -> LaunchDescription:
     sumo = os.path.join(get_package_share_directory("sumo_gazebo"), "launch", "sumo.launch.py")
     return LaunchDescription([
-        DeclareLaunchArgument("team", default_value="1", description="Your team number (1-6)"),
+        DeclareLaunchArgument("team", default_value="1", description="Your team number (1-7)"),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(sumo),
             launch_arguments={"mode": "practice", "teams": LaunchConfiguration("team")}.items(),
