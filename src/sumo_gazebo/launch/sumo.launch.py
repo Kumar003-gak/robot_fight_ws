@@ -5,7 +5,8 @@ import xacro
 import yaml
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchContext, LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction
+from launch.actions import (DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction,
+                            SetEnvironmentVariable)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -37,7 +38,8 @@ def setup(context: LaunchContext) -> list:
     starts = [(-1.0, 0.0, 0.0)] if mode == "practice" else [(-1.2, 0.0, 0.0), (1.2, 0.0, math.pi)]
     robot_xacro = os.path.join(desc_share, "urdf", "sumo_bot.sdf.xacro")
 
-    actions = [IncludeLaunchDescription(
+    partition = f"ztr_team{teams[0]}" if mode == "practice" else "ztr_bigscreen"
+    actions = [SetEnvironmentVariable("IGN_PARTITION", partition), IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
             get_package_share_directory("ros_gz_sim"), "launch", "gz_sim.launch.py")),
         launch_arguments={"gz_args": "-r " + os.path.join(sim_share, "worlds", world["file"])}.items(),
